@@ -4,7 +4,7 @@ import { arrOfEvents, savetoLocalStorage, getFromLocalStorage } from './storage.
 let eventPlace = document.querySelectorAll('.day');
 let eventDay = document.querySelectorAll('.day-number');
 
-export function displayEvent(starttime, endTime, name, descriprion, id) {
+export function displayEvent(starttime, endTime, name, descriprion, id, color) {
     if (arrayOfDates[0].getMonth() === starttime.getMonth()) {
         let diff = ((endTime - starttime) / 1000 / 60);
         for (let i = 0; i < 7; i++) {
@@ -12,6 +12,7 @@ export function displayEvent(starttime, endTime, name, descriprion, id) {
             let timeParts = (starttime + '').split(' ')[4].split(':');
 
             if (eventDay[i].innerHTML == endTime.getDate()) {
+
                 //create long event
                 if (starttime.getDate() !== endTime.getDate()) {
                     let activeEventShort = document.createElement('div');
@@ -41,7 +42,9 @@ export function displayEvent(starttime, endTime, name, descriprion, id) {
 
 
                     activeEventShort.setAttribute('data-id', id);
+                    activeEventShort.style.backgroundColor = color;
                     activeEventLong.setAttribute('data-id', id);
+                    activeEventLong.style.backgroundColor = color;
 
                 } else {
                     // create short event
@@ -58,6 +61,7 @@ export function displayEvent(starttime, endTime, name, descriprion, id) {
                     activeEvent.innerHTML += `${descriprion}`;
 
                     activeEvent.setAttribute('data-id', id);
+                    activeEvent.style.backgroundColor = color;
                 }
             }
         }
@@ -72,6 +76,6 @@ export function renderEvents() {
             arrOfEvents[i].endDate = new Date(arrOfEvents[i].endDate);
         }
         displayEvent(arrOfEvents[i].startDate, arrOfEvents[i].endDate, arrOfEvents[i].name,
-            arrOfEvents[i].description, arrOfEvents[i].id);
+            arrOfEvents[i].description, arrOfEvents[i].id, arrOfEvents[i].color);
     };
 };

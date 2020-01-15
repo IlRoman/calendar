@@ -102,6 +102,14 @@
                 close
             </button>
             <input name="title" class="input__name" type="text" placeholder="Add title">
+
+            <div class="color-picker">
+                <label class="color-picker_label">
+                    <span class="color-picker_label-text">Select a color</span>
+                    <input class="event__color-picker" type="color" name="color" value="#4183f1">
+                </label>
+            </div>
+
             <div class="date-block ">
                 <i class="Tiny material-icons">access_time</i>
                 <input class="start-date input-style" type="date" name="trip-start" value="2019-12-23"
@@ -120,13 +128,15 @@
             </div>
             <div class="control ">
                 <button class="delete-event ">
-                    <i class="Tiny material-icons ">delete</i>
+                    <i class="Tiny material-icons material-icons-delete">delete</i>
                 </button>
                 <button type="submit" class="submit-button ">Save</button>
             </div>
+
         </form>
         <span class="event__name "></span>
         <span class="event__description "></span>
+
     </section>
 
     <script src="./source/scripts/index.js" type="module"></script>

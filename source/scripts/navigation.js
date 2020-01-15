@@ -1,5 +1,5 @@
 import { calendarRendering } from './calendar-visualization.js'
-import { arrOfEvents, getFromLocalStorage } from './storage.js'
+import { arrOfEvents } from './storage.js'
 import { renderEvents } from './slots-logic.js'
 import { redLine } from './red-line.js'
 import { activeEventOnclick } from './edit-event.js'

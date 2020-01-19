@@ -40,7 +40,7 @@ export function saveEvent() {
 function createNewEvent(name, color, startDate, endDate, description) {
 
     let newEvent = {
-        id: arrOfEvents.length + 1,
+        id: Math.random() * 1000,
         name: name,
         color: color,
         startDate: new Date(startDate),

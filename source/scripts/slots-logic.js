@@ -1,5 +1,5 @@
 import { arrayOfDates } from './navigation.js';
-import { arrOfEvents, savetoLocalStorage, getFromLocalStorage } from './storage.js'
+import { arrOfEvents, getFromLocalStorage } from './storage.js'
 
 let eventPlace = document.querySelectorAll('.day');
 let eventDay = document.querySelectorAll('.day-number');

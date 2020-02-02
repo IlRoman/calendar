@@ -1,4 +1,3 @@
-import { createTemporaryCell } from './temporary-cell.js';
 import { calendarRendering } from './calendar-visualization.js';
 
 let startDate = document.querySelector('.start-date');
@@ -27,7 +26,6 @@ function timeToString(date) {
 
 export const addButton = (event) => {
     if (event.target.classList.value === 'emptyCell') {
-        createTemporaryCell(event.target);
 
         const popup = document.querySelector(`.popup`);
         popup.classList.add('popup-switch');
@@ -38,7 +36,7 @@ export const addButton = (event) => {
 
         // вставляем дату в попап
         let month = document.querySelector('.dates').innerHTML.split(' ')[0];
-        let startMonth = '01'
+        let startMonth = '02'
 
         let year = document.querySelector('.dates').innerHTML.split(' ')[1];
         let startYear = year;

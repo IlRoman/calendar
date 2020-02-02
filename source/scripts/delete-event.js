@@ -6,15 +6,12 @@ export function deleteButtonOnclick(obj) {
     deleteButton.addEventListener('click', deleteEvent);
     function deleteEvent() {
         event.preventDefault();
-        for (let i = 0; i < arrOfEvents.length; i++) {
-            if (obj.id == arrOfEvents[i].id) {
-                arrOfEvents.splice(i, 1);
-                savetoLocalStorage();
-                const popup = document.querySelector(`.popup`);
-                popup.classList.remove('popup-switch');
-                renderDates();
-                return;
-            }
-        }
+
+        let deletedEvent = arrOfEvents.indexOf(arrOfEvents.find(x => obj.id == x.id))
+        arrOfEvents.splice(deletedEvent, 1);
+        savetoLocalStorage();
+        const popup = document.querySelector(`.popup`);
+        popup.classList.remove('popup-switch');
+        renderDates();
     }
 }

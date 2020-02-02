@@ -22,23 +22,6 @@ export function saveEvent() {
         return;
     }
 
-    createNewEvent(name, color, startDate, endDate, description);
-    savetoLocalStorage();
-    renderEvents(arrOfEvents);
-
-    // const defaultBackgroundColor = document.querySelector('.event__color-picker');
-    // defaultBackgroundColor.value = '#4183f1';
-
-    const popup = document.querySelector(`.popup`);
-    popup.classList.remove('popup-switch');
-
-    renderDates();
-    activeEventOnclick();
-    calendarRendering();
-}
-
-function createNewEvent(name, color, startDate, endDate, description) {
-
     let newEvent = {
         id: Math.random() * 1000,
         name: name,
@@ -51,6 +34,16 @@ function createNewEvent(name, color, startDate, endDate, description) {
     if (!isNaN(newEvent.startDate.getTime()) && !isNaN(newEvent.endDate.getTime())) {
         arrOfEvents.push(newEvent);
     }
+
+    savetoLocalStorage();
+    renderEvents(arrOfEvents);
+
+    const popup = document.querySelector(`.popup`);
+    popup.classList.remove('popup-switch');
+
+    renderDates();
+    activeEventOnclick();
+    calendarRendering();
 }
 
 saveButton.addEventListener('click', saveEvent);

@@ -23,7 +23,6 @@ export const calendarRendering = () => {
             day.append(hour);
         }
     }
-    // localStorage.clear();
 }
 
 calendarRendering();

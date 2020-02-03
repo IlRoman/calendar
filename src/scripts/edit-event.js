@@ -1,26 +1,26 @@
-import { arrOfEvents, savetoLocalStorage } from './storage.js';
 import { deleteButtonOnclick } from './delete-event.js';
 import { renderDates } from './navigation.js';
+import { deleteFromServer } from './get-ways.js';
 
-export function activeEventOnclick() {
+export function activeEventOnclick(arr) {
     let activeEvents = document.querySelectorAll('.active_event')
     for (let i = 0; i < activeEvents.length; i++) {
         activeEvents[i].addEventListener('click', function () {
-            for (let j = 0; j < arrOfEvents.length; j++) {
-                if (event.target.dataset.id == arrOfEvents[j].id) {
-                    displayCurrentEvent(arrOfEvents[j]);
-                    deleteButtonOnclick(arrOfEvents[j]);
+            for (let j = 0; j < arr.length; j++) {
+                if (event.target.dataset.id == arr[j]._id) {
+                    displayPopup(arr[j]);
+                    deleteButtonOnclick(arr[j]);
 
                     // edit event
                     let editButton = document.querySelector('.submit-button ');
-                    editButton.addEventListener('click', editEvent.bind(editButton, arrOfEvents[j]));
+                    editButton.addEventListener('click', editEvent.bind(editButton, arr[j]));
                 }
             }
         })
     }
 }
 
-function displayCurrentEvent(editedEvent) {
+function displayPopup(editedEvent) {
     const popup = document.querySelector(`.popup`);
     popup.classList.add('popup-switch');
 
@@ -57,17 +57,12 @@ function displayCurrentEvent(editedEvent) {
 }
 
 function editEvent(obj) {
-
-    for (let i = 0; i < arrOfEvents.length; i++) {
-        if (obj.id == arrOfEvents[i].id) {
-            arrOfEvents.splice(i, 1);
-            savetoLocalStorage();
-            renderDates();
-        }
-    }
+    deleteFromServer(obj._id)
+        .then(() => renderDates())
 
     let editButton = document.querySelector('.submit-button ');
     editButton.removeEventListener('click', editEvent);
+
     const popup = document.querySelector(`.popup`);
     popup.classList.remove('popup-switch');
 }

@@ -1,6 +1,4 @@
-import { arrOfEvents, savetoLocalStorage } from './storage.js'
-import { renderEvents } from './slots-logic.js'
-import { activeEventOnclick } from './edit-event.js'
+import { postToServer } from './get-ways.js'
 import { renderDates } from './navigation.js'
 import { calendarRendering } from './calendar-visualization.js';
 import { validate } from './validate.js';
@@ -23,7 +21,6 @@ export function saveEvent() {
     }
 
     let newEvent = {
-        id: Math.random() * 1000,
         name: name,
         color: color,
         startDate: new Date(startDate),
@@ -31,18 +28,11 @@ export function saveEvent() {
         description: description,
     }
 
-    if (!isNaN(newEvent.startDate.getTime()) && !isNaN(newEvent.endDate.getTime())) {
-        arrOfEvents.push(newEvent);
-    }
-
-    savetoLocalStorage();
-    renderEvents(arrOfEvents);
+    postToServer(newEvent)
+        .then(() => renderDates())
 
     const popup = document.querySelector(`.popup`);
     popup.classList.remove('popup-switch');
-
-    renderDates();
-    activeEventOnclick();
     calendarRendering();
 }
 

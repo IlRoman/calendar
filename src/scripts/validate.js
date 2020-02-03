@@ -1,4 +1,4 @@
-import { arrOfEvents } from './storage.js';
+import { arrOfEvents } from './render-active-events.js';
 
 export function validate(start, end) {
     if (!errorDate(start, end) || !duration(start, end) || !checkForUpdate(start) || !checkEvent()) return false;
@@ -32,7 +32,7 @@ export const duration = (start, end) => {
 
 export const checkForUpdate = (start) => {
     const now = new Date()
-        // if (start - now < 0) return true;
+    // if (start - now < 0) return true;
     if (start - now.getTime() < fifteenMinInMs) {
         alert('you cannot delete/update event 15 minutes before the start')
         return false

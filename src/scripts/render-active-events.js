@@ -1,5 +1,6 @@
 import { arrayOfDates } from './navigation.js';
-import { arrOfEvents, getFromLocalStorage } from './storage.js'
+import { getEventsList } from './get-ways.js';
+import { activeEventOnclick } from './edit-event.js';
 
 let eventPlace = document.querySelectorAll('.day');
 let eventDay = document.querySelectorAll('.day-number');
@@ -24,7 +25,6 @@ export function displayEvent(starttime, endTime, name, descriprion, id, color) {
                     activeEventShort.style.marginTop = `${marginTopOfShortEvent + 100}px`;
                     activeEventShort.style.height = `${1440 - marginTopOfShortEvent}px`;
 
-                    let heightOfLongEvent = endTime
                     activeEventLong.style.marginTop = '100px'
                     activeEventLong.style.height = `${1440 - (1440 - (endTime + '').split(' ')[4].split(':')[0] * 60 +
                         +((endTime + '').split(' ')[4].split(':')[1]))}px`;
@@ -68,14 +68,26 @@ export function displayEvent(starttime, endTime, name, descriprion, id, color) {
     }
 };
 
-export function renderEvents() {
-    getFromLocalStorage();
-    for (let i = 0; i < arrOfEvents.length; i++) {
-        if (typeof (arrOfEvents[i].startDate) !== 'object') {
-            arrOfEvents[i].startDate = new Date(arrOfEvents[i].startDate);
-            arrOfEvents[i].endDate = new Date(arrOfEvents[i].endDate);
-        }
-        displayEvent(arrOfEvents[i].startDate, arrOfEvents[i].endDate, arrOfEvents[i].name,
-            arrOfEvents[i].description, arrOfEvents[i].id, arrOfEvents[i].color);
-    };
+export function renderEvents(arr) {
+    if (arr.length !== 0) {
+        for (let i = 0; i < arr.length; i++) {
+            if (typeof (arr[i].startDate) !== 'object') {
+                arr[i].startDate = new Date(arr[i].startDate);
+                arr[i].endDate = new Date(arr[i].endDate);
+            }
+            displayEvent(arr[i].startDate, arr[i].endDate, arr[i].name,
+                arr[i].description, arr[i]._id, arr[i].color);
+        };
+    }
 };
+
+export let arrOfEvents = [];
+
+export function renderFromServer() {
+    getEventsList()
+        .then(result => {
+            renderEvents(result);
+            activeEventOnclick(result);
+            arrOfEvents = result;
+        })
+}

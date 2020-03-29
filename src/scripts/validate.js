@@ -32,7 +32,6 @@ export const duration = (start, end) => {
 
 export const checkForUpdate = (start) => {
     const now = new Date()
-    // if (start - now < 0) return true;
     if (start - now.getTime() < fifteenMinInMs) {
         alert('you cannot delete/update event 15 minutes before the start')
         return false

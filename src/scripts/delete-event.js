@@ -6,7 +6,7 @@ export function deleteButtonOnclick(obj) {
     deleteButton.addEventListener('click', deleteEvent);
     function deleteEvent() {
         event.preventDefault();
-        deleteFromServer(obj._id)
+        deleteFromServer(obj.id)
             .then(() => renderDates())
 
         const popup = document.querySelector(`.popup`);

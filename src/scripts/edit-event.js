@@ -7,7 +7,7 @@ export function activeEventOnclick(arr) {
     for (let i = 0; i < activeEvents.length; i++) {
         activeEvents[i].addEventListener('click', function () {
             for (let j = 0; j < arr.length; j++) {
-                if (event.target.dataset.id == arr[j]._id) {
+                if (event.target.dataset.id == arr[j].id) {
                     displayPopup(arr[j]);
                     deleteButtonOnclick(arr[j]);
 
@@ -57,7 +57,7 @@ function displayPopup(editedEvent) {
 }
 
 function editEvent(obj) {
-    deleteFromServer(obj._id)
+    deleteFromServer(obj.id)
         .then(() => renderDates())
 
     let editButton = document.querySelector('.submit-button ');

@@ -76,7 +76,7 @@ export function renderEvents(arr) {
                 arr[i].endDate = new Date(arr[i].endDate);
             }
             displayEvent(arr[i].startDate, arr[i].endDate, arr[i].name,
-                arr[i].description, arr[i]._id, arr[i].color);
+                arr[i].description, arr[i].id, arr[i].color);
         };
     }
 };

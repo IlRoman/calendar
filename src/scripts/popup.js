@@ -30,11 +30,9 @@ export const addButton = (event) => {
         const popup = document.querySelector(`.popup`);
         popup.classList.add('popup-switch');
 
-        // вставляем время в попап
         startTime.value = event.target.closest('.emptyRow').dataset.time + '';
         endTime.value = event.target.closest('.emptyRow').dataset.time + '';
 
-        // вставляем дату в попап
         let month = document.querySelector('.dates').innerHTML.split(' ')[0];
         let startMonth = '02'
 
